@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pystackw11"
+version = "0.1.0"
+description = "Este projeto é de uma corretora de ações com orientação do Caio pythonando"
+authors = ["Jorge Luiz Plautz <jorge.plautz@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
