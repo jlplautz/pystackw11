@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import modelpaths
 
 
 # Create your views here.
@@ -37,7 +36,7 @@ class Empresas(models.Model):
     estagio = models.CharField(
         max_length=4, choices=estagio_choices, default='I'
     )
-    area = modelpaths.CharField(max_length=3, choices=area_choices)
+    area = models.CharField(max_length=3, choices=area_choices)
     publico_alvo = models.CharField(max_length=3)
     valor = models.DecimalField(
         max_digits=9, decimal_places=2
