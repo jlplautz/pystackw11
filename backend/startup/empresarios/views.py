@@ -9,35 +9,6 @@ from .models import Documento, Empresas, Metricas
 
 
 def cadastrar_empresa(request):
-    if not request.user.is_authenticated:
-        return redirect('/usuarios/login')
-
-    if request.method == 'GET':
-        return render(request, 'empresarios/cadastrar_empresas.html')
-
-
-def listar_empresas(request):
-    if not request.user.is_authenticated:
-        return redirect('/usuarios/login')
-
-    # TODO: REalizar os filtros das empresas
-    if request.method == 'GET':
-        empresas = Empresas.objects.filter(user=request.user)
-        return render(
-            request, 'empresarios/listar_empresas.html', {'empresas': empresas}
-        )
-
-
-@property
-def status(self):
-    if date.today() > self.data_final_captacao:
-        return mark_safe(
-            '<span class="badge bg-success">Captação finalizada</span>'
-        )
-    return mark_safe('<span class="badge bg-primary">Em captação</span>')
-
-
-def cadastrar_empresa(request):
     if request.method == 'GET':
         return render(
             request,
@@ -91,6 +62,35 @@ def cadastrar_empresa(request):
             request, constants.SUCCESS, 'Empresa criada com sucesso'
         )
         return redirect('/empresarios/cadastrar_empresa')
+
+
+def listar_empresas(request):
+    if not request.user.is_authenticated:
+        return redirect('/usuarios/login')
+
+    # TODO: REalizar os filtros das empresas
+    if request.method == 'GET':
+        empresas = Empresas.objects.filter(user=request.user)
+        return render(
+            request, 'empresarios/listar_empresas.html', {'empresas': empresas}
+        )
+
+
+@property
+def status(self):
+    if date.today() > self.data_final_captacao:
+        return mark_safe(
+            '<span class="badge bg-success">Captação finalizada</span>'
+        )
+    return mark_safe('<span class="badge bg-primary">Em captação</span>')
+
+
+def empresa(request, id):
+    empresa = Empresas.objects.get(id=id)
+    if request.method == 'GET':
+        return render(
+            request, 'empresarios/empresa.html', {'empresa': empresa}
+        )
 
 
 def add_doc(request, id):
