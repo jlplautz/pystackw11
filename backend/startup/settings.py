@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'startup.usuarios',
     'startup.empresarios',
+    'startup.investidores',
 ]
 
 MIDDLEWARE = [
