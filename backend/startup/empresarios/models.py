@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import modelpaths
 
 
 # Create your views here.
@@ -37,7 +36,7 @@ class Empresas(models.Model):
     estagio = models.CharField(
         max_length=4, choices=estagio_choices, default='I'
     )
-    area = modelpaths.CharField(max_length=3, choices=area_choices)
+    area = models.CharField(max_length=3, choices=area_choices)
     publico_alvo = models.CharField(max_length=3)
     valor = models.DecimalField(
         max_digits=9, decimal_places=2
@@ -47,3 +46,25 @@ class Empresas(models.Model):
 
     def __str__(self):
         return f'{self.user.username} | {self.nome}'
+
+    @property
+    def valuation(self):
+        return f'{(100 * self.valor) / self.percentual_equity:.2f}'
+
+
+class Documento(models.Model):
+    empresa = models.ForeignKey(Empresas, on_delete=models.DO_NOTHING)
+    titulo = models.CharField(max_length=30)
+    arquivo = models.FileField(upload_to='documentos')
+
+    def __str__(self):
+        return self.titulo
+
+
+class Metricas(models.Model):
+    empresa = models.ForeignKey(Empresas, on_delete=models.DO_NOTHING)
+    titulo = models.CharField(max_length=30)
+    valor = models.FloatField()
+
+    def __str__(self):
+        return self.titulo
