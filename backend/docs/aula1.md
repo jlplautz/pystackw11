@@ -45,10 +45,8 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 Agora vamos fazer a instalação do Django e as demais bibliotecas:
 
 ```python
-pip install django
-pip install pillow
-```
-
+pip install djangoistar_empresas/
+        max_length=4, choices=
 Vamos criar o nosso projeto Django:
 
 ```jsx
@@ -56,7 +54,8 @@ django-admin startproject healing .
 ```
 
 Rode o servidor para testar:
-
+istar_empresas/
+        max_length=4, choices=
 ```jsx
 python manage.py runserver
 ```
@@ -92,7 +91,8 @@ urlpatterns = [
 
 Em usuarios/views.py crie a view cadastro:
 
-```python
+```pythonistar_empresas/
+        max_length=4, choices=
 def cadastro(request):
     if request.method == "GET":
         return render(request, 'cadastro.html')
@@ -154,7 +154,8 @@ Crie o cadastro.html
                         <input type="text" name="email" id="" placeholder="email@email.com" class="form-control">
                         <br>
                         <div class="row">
-                            <div class="col-md">
+                            <div class="col-md">istar_empresas/
+        max_length=4, choices=
                                 <label for="">Senha</label>
                                 <input type="password" name="senha" class="form-control" placeholder="Digite sua senha ...">
                             </div>
